@@ -1,0 +1,11 @@
+<h2>郵寄地址</h2>
+<ng-container *ngIf="cart$ | async as cart">
+  <div class="row" >
+    <shipping-form [cart]="cart" ></shipping-form>
+  </div>
+  <hr>
+  <h1>預覽</h1>
+  <div class="row">
+    <cart-summary [cart]="cart" ></cart-summary>
+  </div>
+</ng-container>

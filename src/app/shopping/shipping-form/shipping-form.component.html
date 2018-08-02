@@ -1,0 +1,28 @@
+<form #f="ngForm">
+  <div class="form-group">
+    <label for="">姓名</label>
+    <input #name="ngModel" name="name" [(ngModel)]="shipping.name" type="text" class="form-control" required>
+    <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
+      <div *ngIf="name.errors.required">姓名必填</div>
+    </div>
+  </div>
+  <div class="form-group">
+      <label for="">縣市</label>
+      <input #city="ngModel" name="city" [(ngModel)]="shipping.city" type="text" class="form-control" required>
+      <div class="alert alert-danger" *ngIf="city.touched && city.invalid">
+        <div *ngIf="city.errors.required">縣市必填</div>
+      </div>
+    </div>
+  <div class="form-group">
+    <label for="">地址</label>
+    <input #addressLine1="ngModel" name="addressLine1" [(ngModel)]="shipping.addressLine1" type="text" class="form-control" placeholder="街道 號 樓 室" required>
+    <div class="alert alert-danger" *ngIf="addressLine1.touched && addressLine1.invalid">
+      <div *ngIf="addressLine1.errors.required">地址必填</div>
+    </div>
+  </div>
+  
+  <button
+    [disabled]="!f.valid" 
+    (click)="placeOrder()"
+    class="btn btn-primary">訂購</button>
+</form>

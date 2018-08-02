@@ -1,0 +1,54 @@
+<h1>目前線上購物功能尚未完工，欲訂購請直接打電話連絡: 楊先生/楊太太 0911-131675 或 04-23131675</h1>
+<hr />
+
+<ng-container *ngIf="cart$ | async as cart" >
+    <p>
+        您目前有 {{ cart.totalItemCount }} 項產品在購物車中。
+    </p>
+    <button 
+    *ngIf="cart.items.length"
+    (click)="clearCart()"
+    class="btn btn-light btn-sm">清除</button>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>產品</th>
+        <th>數量</th>
+        <th  class="text-right">小計</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of cart.items" >
+        <td>
+          <div class="thumbnail" [style.backgroundImage]="'url(' + item.imageUrl +')'"></div>
+        </td>
+        <td>
+          {{ item.title }}
+        </td>
+        <td>
+          <product-quantity [product]=item [shopping-cart]=cart >
+
+          </product-quantity>
+        </td>
+        <td class="text-right">
+          {{ item.totalPrice | currency:'TWD':true:'1.0-0' }}
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th></th>
+        <th></th>
+        <th  class="text-right">總計: </th>
+        <th  class="text-right">{{ cart.totalPrice | currency:'TWD':true:'1.0-0' }}</th>
+      </tr>
+    </tfoot>
+  </table>
+  <a 
+    *ngIf="cart.items.length"
+    routerLink="/check-out"
+    class="btn btn-primary">結帳</a>
+  
+</ng-container>

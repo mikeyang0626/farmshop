@@ -1,0 +1,32 @@
+<ng-container *ngIf="order$ | async as order">
+    <table class="table">
+        <thead>
+          <tr>
+            <th>訂單日期： {{ order.datePlaced | date }} </th>
+          </tr>
+        </thead> 
+        <tbody>
+          <tr >
+            <td>收件人： {{ order.shipping.name }} </td>
+          </tr>
+          <tr>
+              <td>地址：{{ order.shipping.city }} {{ order.shipping.addressLine1 }}</td>
+          </tr>
+          <th>
+            項目：
+          </th>
+          <tr *ngFor="let item of order.items">
+            {{ item.product.title }} x {{ item.quantity }} = {{ item.totalPrice }}
+
+          </tr>
+          <tr>
+            運費: {{ order.shippingFee}}
+          </tr>
+          <th>
+            共計：{{ order.sumPrice }}
+          </th>
+        </tbody> 
+      </table>
+
+</ng-container>
+

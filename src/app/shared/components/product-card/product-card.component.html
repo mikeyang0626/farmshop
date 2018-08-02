@@ -1,0 +1,23 @@
+
+<div class="col col-xs-6">
+  <div class="card" style="width: 15rem;">
+    <img *ngIf="product.imageUrl" class="card-img-top" [src]="product.imageUrl" alt="{{ product.title }}">
+    <div class="card-body">
+      <h5 class="card-title">{{ product.title }}</h5>
+      <p class="card-text">{{ product.price | currency:'TWD':'symbol':'1.0-0' }}</p>
+      
+    </div>
+    <div *ngIf="showActions && shoppingCart"  class="card-footer">
+      <button 
+      *ngIf="shoppingCart.getQuantity(product) === 0; else updateQuantity"
+      (click)="addToCart()"  
+      class="btn btn-secondary btn-block">加入購物車</button>
+      <ng-template #updateQuantity>
+        <product-quantity [product]=product [shopping-cart]=shoppingCart >
+
+        </product-quantity>
+      </ng-template>
+    </div>
+  </div>
+</div>
+

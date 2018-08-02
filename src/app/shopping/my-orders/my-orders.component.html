@@ -1,0 +1,19 @@
+<h1>我的訂單</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th>客戶名稱</th>
+      <th>日期</th>
+      <th></th>
+    </tr>
+  </thead> 
+  <tbody>
+    <tr *ngFor="let order of orders$ | async">
+      <td>{{ order.shipping.name }}</td>
+      <td>{{ order.datePlaced | date}}</td>
+      <td>
+        <a [routerLink]="['/my/orders/', order.$key]">詳情</a>
+      </td>
+    </tr>
+  </tbody> 
+</table>
