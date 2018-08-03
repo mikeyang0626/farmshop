@@ -15,15 +15,16 @@
           <th>
             項目：
           </th>
+        
           <tr *ngFor="let item of order.items">
-            {{ item.product.title }} x {{ item.quantity }} = {{ item.totalPrice }}
+            {{ item.product.title }} x {{ item.quantity }} = <div class="float-right">{{ item.totalPrice | currency:'TWD':true:'1.0-0'  }}</div>
 
           </tr>
           <tr>
-            運費: {{ order.shippingFee}}
+            運費: <div class="float-right">{{ order.shippingFee | currency:'TWD':true:'1.0-0' }}</div> 
           </tr>
           <th>
-            共計：{{ order.sumPrice }}
+            共計：<div class="float-right">{{ order.sumPrice | currency:'TWD':true:'1.0-0' }}</div>
           </th>
         </tbody> 
       </table>
